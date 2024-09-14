@@ -1,4 +1,5 @@
-// ThemeContext.js
+
+
 import React, { createContext, useState, useEffect } from 'react';
 
 // Create the context
@@ -10,10 +11,22 @@ export const ThemeProvider = ({ children }) => {
 
   // Toggle theme function
   const toggleTheme = () => {
-    setIsDarkMode(prevMode => !prevMode);
+    setIsDarkMode(prevMode => {
+      const newMode = !prevMode;
+      // Save the updated theme preference in localStorage
+      localStorage.setItem('isDarkMode', JSON.stringify(newMode));
+      return newMode;
+    });
   };
 
-  // Apply the theme based on isDarkMode
+  // Apply the theme based on isDarkMode and retrieve from localStorage on mount
+  useEffect(() => {
+    const savedTheme = JSON.parse(localStorage.getItem('isDarkMode'));
+    if (savedTheme !== null) {
+      setIsDarkMode(savedTheme);
+    }
+  }, []);
+
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add('dark');

@@ -104,53 +104,59 @@ const Users = () => {
 
       {/* Responsive Table */}
       <div className="overflow-x-auto" data-aos="zoom-in">
-        <table {...getTableProps()} className="min-w-full table-auto border-collapse">
-          <thead>
-            {headerGroups.map(headerGroup => (
-              <tr {...headerGroup.getHeaderGroupProps()} key={headerGroup.id}>
-                {headerGroup.headers.map(column => (
-                  <th
-                    {...column.getHeaderProps(column.getSortByToggleProps())}
-                    className={`p-2 sm:p-4 border-b text-left text-xs sm:text-sm ${
-                      isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-200 text-black'
-                    }`} // Dynamic table header styles
-                    key={column.id}
-                  >
-                    {column.render('Header')}
-                    <span>
-                      {column.isSorted ? (column.isSortedDesc ? ' 🔽' : ' 🔼') : ''}
-                    </span>
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </thead>
-          <tbody {...getTableBodyProps()}>
-            {page.map(row => {
-              prepareRow(row);
-              return (
-                <tr
-                  {...row.getRowProps()}
-                  key={row.id}
-                  className={`${isDarkMode ? 'hover:bg-gray-700' : 'hover:bg-gray-100'}`}
-                  data-aos="fade-right"
-                >
-                  {row.cells.map(cell => (
-                    <td
-                      {...cell.getCellProps()}
-                      className={`p-2 sm:p-4 border-b text-xs sm:text-sm ${
-                        isDarkMode ? 'bg-gray-900 text-white border-gray-700' : 'bg-white text-black border-gray-300'
-                      }`} // Dynamic table cell styles
-                      key={cell.column.id}
+        {filteredUsers.length > 0 ? (
+          <table {...getTableProps()} className="min-w-full table-auto border-collapse">
+            <thead>
+              {headerGroups.map(headerGroup => (
+                <tr {...headerGroup.getHeaderGroupProps()} key={headerGroup.id}>
+                  {headerGroup.headers.map(column => (
+                    <th
+                      {...column.getHeaderProps(column.getSortByToggleProps())}
+                      className={`p-2 sm:p-4 border-b text-left text-xs sm:text-sm ${
+                        isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-200 text-black'
+                      }`} // Dynamic table header styles
+                      key={column.id}
                     >
-                      {cell.render('Cell')}
-                    </td>
+                      {column.render('Header')}
+                      <span>
+                        {column.isSorted ? (column.isSortedDesc ? ' 🔽' : ' 🔼') : ''}
+                      </span>
+                    </th>
                   ))}
                 </tr>
-              );
-            })}
-          </tbody>
-        </table>
+              ))}
+            </thead>
+            <tbody {...getTableBodyProps()}>
+              {page.map(row => {
+                prepareRow(row);
+                return (
+                  <tr
+                    {...row.getRowProps()}
+                    key={row.id}
+                    className={`${isDarkMode ? 'hover:bg-gray-700' : 'hover:bg-gray-100'}`}
+                    data-aos="fade-right"
+                  >
+                    {row.cells.map(cell => (
+                      <td
+                        {...cell.getCellProps()}
+                        className={`p-2 sm:p-4 border-b text-xs sm:text-sm ${
+                          isDarkMode ? 'bg-gray-900 text-white border-gray-700' : 'bg-white text-black border-gray-300'
+                        }`} // Dynamic table cell styles
+                        key={cell.column.id}
+                      >
+                        {cell.render('Cell')}
+                      </td>
+                    ))}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        ) : (
+          <div className="text-center py-4">
+            <p>No user with that name.</p>
+          </div>
+        )}
       </div>
 
       {/* Pagination Controls */}
