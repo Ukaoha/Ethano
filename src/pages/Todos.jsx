@@ -139,7 +139,7 @@ const Todos = () => {
       </div>
 
       {/* Pagination Controls */}
-      <div className="mt-6 flex justify-center items-center space-x-2" data-aos="flip-up">
+      <div className="mt-6 flex justify-center items-center space-x-2">
         {/* Previous Button */}
         <button
           onClick={handlePrevious}
