@@ -208,26 +208,27 @@ const Users = () => {
 
       {/* Modal to display selected user details */}
       {isModalOpen && selectedUser && (
-        <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50 modal-background">
-          <div className="bg-white dark:bg-gray-900 p-8 rounded-md max-w-md w-full sm:max-w-lg">
-            <div className="grid gap-2 sm:grid-cols-2 sm:gap-4">
-              <div>
-                <h3 className="text-xl font-bold">{selectedUser.name}</h3>
-                <p className="text-sm text-gray-500">{selectedUser.username}</p>
-                <p className="text-sm">{selectedUser.email}</p>
-              </div>
-              <div>
-                <p className="text-sm">Phone: {selectedUser.phone}</p>
-                <p className="text-sm">Website: {selectedUser.website}</p>
-                <p className="text-sm">Company: {selectedUser.company.name}</p>
-              </div>
-              <div className="sm:col-span-2">
-                <p className="text-sm">Address: {`${selectedUser.address.street}, ${selectedUser.address.city}, ${selectedUser.address.zipcode}`}</p>
-              </div>
-            </div>
-          </div>
+  <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50 modal-background">
+    <div className="relative -top-24 bg-white dark:bg-gray-900 p-8 rounded-md max-w-md w-full sm:max-w-lg">
+      <div className="grid gap-2 sm:grid-cols-2 sm:gap-4">
+        <div>
+          <h3 className="text-xl font-bold">{selectedUser.name}</h3>
+          <p className="text-sm text-gray-500">{selectedUser.username}</p>
+          <p className="text-sm">{selectedUser.email}</p>
         </div>
-      )}
+        <div>
+          <p className="text-sm">Phone: {selectedUser.phone}</p>
+          <p className="text-sm">Website: {selectedUser.website}</p>
+          <p className="text-sm">Company: {selectedUser.company.name}</p>
+        </div>
+        <div className="sm:col-span-2">
+          <p className="text-sm">Address: {`${selectedUser.address.street}, ${selectedUser.address.city}, ${selectedUser.address.zipcode}`}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
     </div>
   );
 };
