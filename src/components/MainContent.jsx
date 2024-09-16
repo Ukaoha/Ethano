@@ -1,13 +1,29 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Navigate, Route, Routes } from 'react-router';
+import Users from '../pages/Users';
+import Posts from '../pages/Posts';
+import Todos from '../pages/Todos';
+import Albums from '../pages/Albums';
+import Settings from '../pages/Settings';
+import { ThemeContext } from './utilities/ThemeContext';
 
 const MainContent = () => {
+  const { isDarkMode } = useContext(ThemeContext); 
+
   return (
-    <main className="p-6 bg-gray-100 h-full">
-      <h1 className="text-2xl font-bold">Main Content Area</h1>
-      <p className="mt-4">
-        Here is the main content area. You can customize it with more components and layout as needed.
-      </p>
-    </main>
+    <main className={`${isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'}  `}>
+     <div className={`w-[90%] m-auto ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'}  `}>
+    <Routes>
+      <Route path="/users" element={<Users />} />
+      <Route path="/posts" element={<Posts />} />
+      <Route path="/todos" element={<Todos/>} />
+      <Route path="/albums" element={<Albums />} />
+      <Route path="/settings" element={<Settings />} />
+      <Route path="/" element={<Navigate to="/users" />} />
+    </Routes>
+  </div>
+  </main>
+
   );
 };
 

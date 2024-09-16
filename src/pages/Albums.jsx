@@ -77,13 +77,11 @@ const Albums = () => {
   };
 
   return (
-    <div className={`p-4 p-4 sm:p-6 lg:p-8 min-h-screen  ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}>
-      <div className="p-4">
-        <div className="mb-4 flex justify-between items-center">
-          <h2 className="text-lg sm:text-3xl font-bold mb-2 sm:mb-0">Albums</h2>
-        </div>
-      </div>
+    <div className={` pb-4  p-4 sm:p-6 lg:p-8 min-h-screen  ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}>
 
+      <div className="mb-4 flex justify-between items-center">
+        <h2 className="text-lg sm:text-3xl font-bold mb-2 sm:mb-0">Albums</h2>
+      </div>
       {paginatedAlbums?.map(album => (
         <div
           key={album.id}
